@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Verificar Repositório') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], useRemoteConfigs: [[url: 'https://github.com/dboechatl/emissormicrosservico.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], useRemoteConfigs: [[url: 'https://github.com/Thalles-Ribeiro-Nascimento/ThallesNascimentoEmissor.git']]])
             }
         }
       
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQubeServer') {  // 'SonarQubeServer' é o nome da instância configurada no Jenkins
-                        bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=cadastro -Dsonar.projectName=cadastro-app'
+                        bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=ThallesNascimentoEmissor -Dsonar.projectName=permissoes-app'
                     }
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
         stage('Construir Imagem Docker') {
             steps {
                 script {
-                    def appName = 'cadastro-app'
+                    def appName = 'permissoes-app'
                     def imageTag = "${appName}:${env.BUILD_ID}"
 
                     // Construir a imagem Docker
@@ -43,7 +43,7 @@ pipeline {
         stage('Fazer Deploy') {
             steps {
                 script {
-                    def appName = 'cadastro'
+                    def appName = 'permissoes'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     
                     // Parar e remover o container existente, se houver
