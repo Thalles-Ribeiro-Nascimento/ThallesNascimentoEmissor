@@ -2,7 +2,7 @@
 FROM maven:latest AS build
 
 # Defina o diretório de trabalho para /app
-WORKDIR /emissor
+WORKDIR /ThallesNascimentoEmissor
 
 # Copie o arquivo pom.xml e a pasta src para o contêiner
 COPY pom.xml .
