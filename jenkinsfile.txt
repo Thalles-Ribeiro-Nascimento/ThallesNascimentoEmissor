@@ -13,7 +13,7 @@ pipeline {
                     // Atualiza o PATH se necessário
                     env.PATH = "/usr/bin:$PATH"
                     // Instalar as dependências Maven antes de compilar o projeto
-                    bat 'mvn clean install'  // Instala as dependências do Maven
+                    sh 'mvn clean install'  // Instala as dependências do Maven
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQubeServer') {  // 'SonarQubeServer' é o nome da instância configurada no Jenkins
-                        bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=ThallesNascimentoEmissor -Dsonar.projectName=permissoes-app'
+                        sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=ThallesNascimentoEmissor -Dsonar.projectName=permissoes-app'
                     }
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
                     def imageTag = "${appName}:${env.BUILD_ID}"
 
                     // Construir a imagem Docker
-                    bat "docker build -t ${imageTag} ."
+                    sh "docker build -t ${imageTag} ."
                 }
             }
         }
@@ -47,15 +47,15 @@ pipeline {
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     
                     // Parar e remover o container existente, se houver
-            		bat "docker stop ${appName} || exit 0"
-            		bat "docker rm -v ${appName} || exit 0"  // Remover o container e os volumes associados
+            		sh "docker stop ${appName} || exit 0"
+            		sh "docker rm -v ${appName} || exit 0"  // Remover o container e os volumes associados
             
             		// Parar e remover os containers do mysql e rabbitmq, se estiverem em uso
-            		bat "docker stop rabbitmq || exit 0"
-            		bat "docker rm -v rabbitmq || exit 0"
+            		sh "docker stop rabbitmq || exit 0"
+            		sh "docker rm -v rabbitmq || exit 0"
 
                     // Executar o novo container
-                    bat "docker-compose up -d --build"
+                    sh "docker-compose up -d --build"
                 }
             }
         }
