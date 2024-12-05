@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+
   app:
     image: permissoes-app:latest  # Nome da imagem do aplicativo Spring Boot
     container_name: permissoes-app
@@ -29,3 +30,17 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin123
 #    restart: always  # Reinicia automaticamente o contêiner em caso de falha
+  # Define a container named 'oldman-jenkins' using the latest official Jenkins Image.
+  oldman-jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    ports:
+      # Map port 8080 of the host to port 8080 within the container to access Jenkins web interface.
+      - "8080:8080"
+    volumes:
+      # Mount a volume named 'jenkins-vol' to persist Jenkins data across container restarts.
+      - jenkins-vol:/var/jenkins_home
+
+volumes:
+  # Define a Docker volume named 'jenkins-vol' to persist Jenkins data.
+  jenkins-vol:
+    driver: local # Specify the volume driver as local
