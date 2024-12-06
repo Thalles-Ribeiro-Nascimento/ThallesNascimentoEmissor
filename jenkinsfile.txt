@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     def appName = 'permissoes-app'
-                    def imageTag = "${appName}:${env.BUILD_ID} -f C:\MS-Senac\Recuperação\ThallesNascimentoEmissor\Dockerfile"
+                    def imageTag = "${appName}:${env.BUILD_ID}"
 
                     // Construir a imagem Docker
                     bat "docker build -t ${imageTag} ."
