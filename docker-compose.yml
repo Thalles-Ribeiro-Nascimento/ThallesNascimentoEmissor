@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   app:
     image: permissoes-app:latest  # Nome da imagem do aplicativo Spring Boot
     container_name: permissoes-app
