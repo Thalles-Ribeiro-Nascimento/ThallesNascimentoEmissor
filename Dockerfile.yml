@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Escolha a imagem base do JDK para rodar a aplicação
-#FROM openjdk:21
+FROM openjdk:20
 
 # Defina o diretório de trabalho para /app
 WORKDIR /ThallesNascimentoEmissor
