@@ -2,7 +2,7 @@
 FROM maven:latest AS build
 
 # Defina o diretório de trabalho para /app
-WORKDIR /ThallesNascimentoEmissor
+WORKDIR /app
 
 # Copie o arquivo pom.xml e a pasta src para o contêiner
 COPY pom.xml .
@@ -15,7 +15,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:20
 
 # Defina o diretório de trabalho para /app
-WORKDIR /ThallesNascimentoEmissor
+WORKDIR /app
 
 # Copie o arquivo .jar gerado na etapa de build para a imagem final
 COPY --from=build /ThallesNascimentoEmissor/target/*.jar ThallesNascimentoEmissor.jar
@@ -24,4 +24,4 @@ COPY --from=build /ThallesNascimentoEmissor/target/*.jar ThallesNascimentoEmisso
 EXPOSE 3000
 
 # Comando para rodar a aplicação
-ENTRYPOINT ["java", "-jar", "ThallesNascimentoEmissor.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
