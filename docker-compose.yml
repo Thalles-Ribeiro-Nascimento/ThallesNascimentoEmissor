@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   app:
-    image: maven:latest  # Nome da imagem do aplicativo Spring Boot
+    image: permissoes-app:latest  # Nome da imagem do aplicativo Spring Boot
     container_name: permissoes-app
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     ports:
-      - "9090:9090"  # Porta exposta para acessar a aplicação
+      - "3000:3000"  # Porta exposta para acessar a aplicação
     environment:
       # Configurações para o RabbitMQ
       SPRING_RABBITMQ_HOST: rabbitmq  # Nome do serviço RabbitMQ no Docker Compose
