@@ -8,7 +8,7 @@ public class Producer implements Serializable {
     private String nameUser;
     private String permissionUser;
 
-    public String getnameUser() {
+    public String getNameUser() {
         return nameUser;
     }
 
