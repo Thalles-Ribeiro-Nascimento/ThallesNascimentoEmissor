@@ -24,4 +24,4 @@ COPY --from=build /app/target/*.jar ThallesNascimentoEmissor.jar
 EXPOSE 3000
 
 # Comando para rodar a aplicação
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "ThallesNascimentoEmissor.jar"]
