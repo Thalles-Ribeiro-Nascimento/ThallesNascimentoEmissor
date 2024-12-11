@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar ThallesNascimentoEmissor.jar
 
 # Exponha a porta que a aplicação vai usar
-EXPOSE 3000
+EXPOSE 5454
 
 # Comando para rodar a aplicação
 ENTRYPOINT ["java", "-jar", "ThallesNascimentoEmissor.jar"]
