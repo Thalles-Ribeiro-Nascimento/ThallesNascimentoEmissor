@@ -11,7 +11,7 @@ services:
       - "3434:3434"  # Porta exposta para acessar a aplicação
     environment:
       # Configurações para o RabbitMQ
-      SPRING_RABBITMQ_HOST: rabbitmq  # Nome do serviço RabbitMQ no Docker Compose
+      SPRING_RABBITMQ_HOST: localhost  # Nome do serviço RabbitMQ no Docker Compose
       SPRING_RABBITMQ_PORT: 15672
       SPRING_RABBITMQ_USERNAME: admin
       SPRING_RABBITMQ_PASSWORD: admin123
