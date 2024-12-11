@@ -18,15 +18,15 @@ pipeline {
             }
         }
         
-//        stage('Análise SonarQube') {
-//            steps {
-//                script {
-//                    withSonarQubeEnv('SonarQubeServer') {  // 'SonarQubeServer' é o nome da instância configurada no Jenkins
-//                        bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=ThallesNascimentoEmissor -Dsonar.projectName=permissoes-app'
-//                    }
- //               }
-  //          }
-   //     }
+        stage('Análise SonarQube') {
+            steps {
+                script {
+                    withSonarQubeEnv('sonarqube') {  // 'sonarqube' é o nome da instância configurada no Jenkins
+                        bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=ThallesNascimentoEmissor -Dsonar.projectName=permissoes-app'
+                    }
+                }
+            }
+         }
         
         stage('Construir Imagem Docker') {
             steps {
