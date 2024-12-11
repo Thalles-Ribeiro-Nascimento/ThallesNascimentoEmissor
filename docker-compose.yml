@@ -17,7 +17,7 @@ services:
       SPRING_RABBITMQ_PASSWORD: admin123
     depends_on:
       - rabbitmq  # Aguarda o RabbitMQ estar disponível
-#    restart: always  # Reinicia automaticamente o contêiner em caso de falha
+    restart: always  # Reinicia automaticamente o contêiner em caso de falha
 
   rabbitmq:
     container_name: rabbitmq
